@@ -156,22 +156,13 @@ set(CODEC2_SRCS
     sine.c
     codec2.c
     codec2_fft.c
-    cohpsk.c
-    codec2_fifo.c
-    fdmdv.c
-    fm.c
-    fsk.c
-    fmfsk.c
     kiss_fft.c
     kiss_fftr.c
-    linreg.c
     interp.c
     lsp.c
     mbest.c
     newamp1.c
     newamp2.c
-    ofdm.c
-    ofdm_mode.c
     phase.c
     quantise.c
     pack.c
@@ -183,37 +174,6 @@ set(CODEC2_SRCS
     codebooknewamp1_energy.c
     codebooknewamp2.c
     codebooknewamp2_energy.c
-    golay23.c
-    freedv_api.c
-    freedv_1600.c
-    freedv_700.c
-    freedv_2020.c
-    freedv_fsk.c
-    freedv_vhf_framing.c
-    freedv_data_channel.c
-    varicode.c
-    modem_stats.c
-    ofdm.c
-    mpdecode_core.c
-    phi0.c
-    gp_interleaver.c
-    interldpc.c
-    filter.c
-    HRA_112_112.c
-    HRA_56_56.c
-    HRAb_396_504.c
-    H_256_768_22.c
-    H_256_512_4.c
-    HRAa_1536_512.c
-    H_128_256_5.c
-    H_2064_516_sparse.c
-    H_4096_8192_3d.c
-    H_16200_9720.c
-    H_1024_2048_4f.c
-    ldpc_codes.c
-    lpcnet_freq.c
-    reliable_text.c
-    Codec2JNI.cpp
 )
 
 set(CODEC2_PUBLIC_HEADERS
@@ -269,130 +229,130 @@ export(TARGETS codec2
     FILE ${CMAKE_BINARY_DIR}/codec2.cmake
 )
 
-add_executable(c2enc c2enc.c)
-target_link_libraries(c2enc ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(c2dec c2dec.c)
-target_link_libraries(c2dec ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(c2sim c2sim.c sd.c)
-target_link_libraries(c2sim ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fdmdv_get_test_bits fdmdv_get_test_bits.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
-target_link_libraries(fdmdv_get_test_bits m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(fdmdv_mod fdmdv_mod.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
-target_link_libraries(fdmdv_mod m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(fdmdv_demod fdmdv_demod.c fdmdv.c kiss_fft.c octave.c modem_stats.c codec2_fft.c kiss_fftr.c)
-target_link_libraries(fdmdv_demod m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(fdmdv_put_test_bits fdmdv_put_test_bits.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
-target_link_libraries(fdmdv_put_test_bits m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(fdmdv_channel fdmdv_channel.c)
-target_link_libraries(fdmdv_channel ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(insert_errors insert_errors.c)
-target_link_libraries(insert_errors ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(freedv_tx freedv_tx.c)
-target_link_libraries(freedv_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_rx freedv_rx.c)
-target_link_libraries(freedv_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_data_raw_tx freedv_data_raw_tx.c)
-target_link_libraries(freedv_data_raw_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_data_raw_rx freedv_data_raw_rx.c octave.c)
-target_link_libraries(freedv_data_raw_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_data_tx freedv_data_tx.c)
-target_link_libraries(freedv_data_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_data_rx freedv_data_rx.c)
-target_link_libraries(freedv_data_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_mixed_tx freedv_mixed_tx.c)
-target_link_libraries(freedv_mixed_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(freedv_mixed_rx freedv_mixed_rx.c)
-target_link_libraries(freedv_mixed_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fsk_mod fsk_mod.c)
-target_link_libraries(fsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fsk_mod_ext_vco fsk_mod_ext_vco.c)
-target_link_libraries(fsk_mod_ext_vco m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(fsk_demod fsk_demod.c modem_probe.c octave.c)
-target_link_libraries(fsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fsk_get_test_bits fsk_get_test_bits.c)
-target_link_libraries(fsk_get_test_bits)
-
-add_executable(fsk_put_test_bits fsk_put_test_bits.c)
-target_link_libraries(fsk_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(framer framer.c)
-target_link_libraries(framer)
-
-add_executable(deframer deframer.c)
-target_link_libraries(deframer)
-
-add_executable(fm_demod fm_demod.c fm.c)
-target_link_libraries(fm_demod m ${CMAKE_REQUIRED_LIBRARIES})
-
-add_executable(cohpsk_mod cohpsk_mod.c)
-target_link_libraries(cohpsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ofdm_get_test_bits ofdm_get_test_bits.c)
-target_link_libraries(ofdm_get_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ofdm_put_test_bits ofdm_put_test_bits.c)
-target_link_libraries(ofdm_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ofdm_mod ofdm_mod.c)
-target_link_libraries(ofdm_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ofdm_demod ofdm_demod.c octave.c)
-target_link_libraries(ofdm_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fmfsk_mod fmfsk_mod.c)
-target_link_libraries(fmfsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(fmfsk_demod fmfsk_demod.c modem_probe.c octave.c)
-target_link_libraries(fmfsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(vhf_deframe_c2 vhf_deframe_c2.c)
-target_link_libraries(vhf_deframe_c2  ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(vhf_frame_c2 vhf_frame_c2.c)
-target_link_libraries(vhf_frame_c2  ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(cohpsk_demod cohpsk_demod.c octave.c)
-target_link_libraries(cohpsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(cohpsk_get_test_bits cohpsk_get_test_bits.c)
-target_link_libraries(cohpsk_get_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(cohpsk_put_test_bits cohpsk_put_test_bits.c octave.c)
-target_link_libraries(cohpsk_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ch ch.c)
-target_link_libraries(ch ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(tollr tollr.c)
-
-add_executable(ldpc_noise ldpc_noise.c)
-target_link_libraries(ldpc_noise m)
-
-add_executable(ldpc_enc ldpc_enc.c)
-target_link_libraries(ldpc_enc ${CMAKE_REQUIRED_LIBRARIES} codec2)
-
-add_executable(ldpc_dec ldpc_dec.c)
-target_link_libraries(ldpc_dec ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# add_executable(c2enc c2enc.c)
+# target_link_libraries(c2enc ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(c2dec c2dec.c)
+# target_link_libraries(c2dec ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(c2sim c2sim.c sd.c)
+# target_link_libraries(c2sim ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fdmdv_get_test_bits fdmdv_get_test_bits.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
+# target_link_libraries(fdmdv_get_test_bits m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(fdmdv_mod fdmdv_mod.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
+# target_link_libraries(fdmdv_mod m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(fdmdv_demod fdmdv_demod.c fdmdv.c kiss_fft.c octave.c modem_stats.c codec2_fft.c kiss_fftr.c)
+# target_link_libraries(fdmdv_demod m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(fdmdv_put_test_bits fdmdv_put_test_bits.c fdmdv.c kiss_fft.c codec2_fft.c kiss_fftr.c)
+# target_link_libraries(fdmdv_put_test_bits m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(fdmdv_channel fdmdv_channel.c)
+# target_link_libraries(fdmdv_channel ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(insert_errors insert_errors.c)
+# target_link_libraries(insert_errors ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(freedv_tx freedv_tx.c)
+# target_link_libraries(freedv_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_rx freedv_rx.c)
+# target_link_libraries(freedv_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_data_raw_tx freedv_data_raw_tx.c)
+# target_link_libraries(freedv_data_raw_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_data_raw_rx freedv_data_raw_rx.c octave.c)
+# target_link_libraries(freedv_data_raw_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_data_tx freedv_data_tx.c)
+# target_link_libraries(freedv_data_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_data_rx freedv_data_rx.c)
+# target_link_libraries(freedv_data_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_mixed_tx freedv_mixed_tx.c)
+# target_link_libraries(freedv_mixed_tx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(freedv_mixed_rx freedv_mixed_rx.c)
+# target_link_libraries(freedv_mixed_rx ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fsk_mod fsk_mod.c)
+# target_link_libraries(fsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fsk_mod_ext_vco fsk_mod_ext_vco.c)
+# target_link_libraries(fsk_mod_ext_vco m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(fsk_demod fsk_demod.c modem_probe.c octave.c)
+# target_link_libraries(fsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fsk_get_test_bits fsk_get_test_bits.c)
+# target_link_libraries(fsk_get_test_bits)
+# 
+# add_executable(fsk_put_test_bits fsk_put_test_bits.c)
+# target_link_libraries(fsk_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(framer framer.c)
+# target_link_libraries(framer)
+# 
+# add_executable(deframer deframer.c)
+# target_link_libraries(deframer)
+# 
+# add_executable(fm_demod fm_demod.c fm.c)
+# target_link_libraries(fm_demod m ${CMAKE_REQUIRED_LIBRARIES})
+# 
+# add_executable(cohpsk_mod cohpsk_mod.c)
+# target_link_libraries(cohpsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ofdm_get_test_bits ofdm_get_test_bits.c)
+# target_link_libraries(ofdm_get_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ofdm_put_test_bits ofdm_put_test_bits.c)
+# target_link_libraries(ofdm_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ofdm_mod ofdm_mod.c)
+# target_link_libraries(ofdm_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ofdm_demod ofdm_demod.c octave.c)
+# target_link_libraries(ofdm_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fmfsk_mod fmfsk_mod.c)
+# target_link_libraries(fmfsk_mod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(fmfsk_demod fmfsk_demod.c modem_probe.c octave.c)
+# target_link_libraries(fmfsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(vhf_deframe_c2 vhf_deframe_c2.c)
+# target_link_libraries(vhf_deframe_c2  ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(vhf_frame_c2 vhf_frame_c2.c)
+# target_link_libraries(vhf_frame_c2  ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(cohpsk_demod cohpsk_demod.c octave.c)
+# target_link_libraries(cohpsk_demod ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(cohpsk_get_test_bits cohpsk_get_test_bits.c)
+# target_link_libraries(cohpsk_get_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(cohpsk_put_test_bits cohpsk_put_test_bits.c octave.c)
+# target_link_libraries(cohpsk_put_test_bits ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ch ch.c)
+# target_link_libraries(ch ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(tollr tollr.c)
+# 
+# add_executable(ldpc_noise ldpc_noise.c)
+# target_link_libraries(ldpc_noise m)
+# 
+# add_executable(ldpc_enc ldpc_enc.c)
+# target_link_libraries(ldpc_enc ${CMAKE_REQUIRED_LIBRARIES} codec2)
+# 
+# add_executable(ldpc_dec ldpc_dec.c)
+# target_link_libraries(ldpc_dec ${CMAKE_REQUIRED_LIBRARIES} codec2)
 
 install(TARGETS codec2 EXPORT codec2-config
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib
