@@ -9,6 +9,8 @@ Android app permits to record voice, prehear the result of the
 compression at self-chosen levels, and to save the compressed voice as
 a ```*.c2``` file. Codec2-encoded files can also be played back.
 
+![recorder](img/codec2-recorder.png) ![player](img/codec2-player.png)
+
 The Android code is based on this
 [demo AudioRecorder app](https://github.com/exRivalis/AudioRecorder)
 
